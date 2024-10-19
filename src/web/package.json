@@ -1,0 +1,125 @@
+{
+  "name": "security-orchestration-platform-frontend",
+  "version": "1.0.0",
+  "description": "Frontend application for the Generative AI-Powered Security Orchestration Platform",
+  "main": "src/index.tsx",
+  "scripts": {
+    "start": "webpack serve --open", // Starts the development server for local testing.
+    "build": "webpack --mode production", // Builds the application for production deployment.
+    "test": "jest" // Runs the test suites to ensure code quality.
+  },
+  "dependencies": {
+    /* React is used for building the user interface.
+       Technical Specification References:
+       - 1.3.3 Technology Stack → User Layer → User Interface: React.js
+       - 4.1 Programming Languages → Frontend Development: JavaScript (React.js)
+       - 4.4 Diagrammatic Representations → Frontend Framework: React.js
+       Addresses the requirement for an interactive and dynamic user interface (TR-UA-015-1).
+    */
+    "react": "^17.0.2",
+    /* ReactDOM allows rendering React components to the DOM.
+       Essential for web-based UI rendering.
+    */
+    "react-dom": "^17.0.2",
+    /* React Router DOM enables routing within the application.
+       Facilitates navigation between different views.
+       Supports usability and accessibility requirements (TR-UA-015-1).
+    */
+    "react-router-dom": "^5.2.0",
+    /* Redux is used for state management across the application.
+       Technical Specification References:
+       - 1.3.3 Technology Stack → User Layer → User Interface: Redux
+       - 4.1 Programming Languages → State Management: JavaScript (Redux)
+       - 4.4 Diagrammatic Representations → State Management: Redux
+       Addresses predictable state management for complex UI interactions (TR-UA-015-1).
+    */
+    "redux": "^4.0.5",
+    /* React Redux connects React components to the Redux store.
+       Bridges React and Redux for state management.
+    */
+    "react-redux": "^7.2.3",
+    /* TypeScript adds static typing to JavaScript.
+       Inferred from .tsx files in GitHub Repo Files (e.g., "src/web/src/App.tsx").
+       Supports maintainability and scalability (TR-MS-016-1).
+    */
+    "typescript": "^4.1.3",
+    /* Tailwind CSS is a utility-first CSS framework.
+       Technical Specification References:
+       - Usability and Accessibility (4.15) → TR-UA-015-5: Incorporate responsive design.
+       - 4.4 Diagrammatic Representations → Frontend Framework: Tailwind CSS
+       Addresses responsive design to support various devices and screen sizes.
+    */
+    "tailwindcss": "^2.1.2",
+    /* PostCSS processes Tailwind CSS and other CSS transformations.
+    */
+    "postcss": "^8.2.6",
+    /* Autoprefixer adds vendor prefixes for cross-browser compatibility.
+       Ensures consistency across different browsers (TR-UA-015-5).
+    */
+    "autoprefixer": "^10.2.5"
+  },
+  "devDependencies": {
+    /* Webpack bundles JavaScript files for usage in a browser.
+       Technical Specification References:
+       - Performance Optimization (4.12) → TR-PO-012-3: Optimize resource utilization.
+       Assists in performance optimization and efficient resource utilization.
+    */
+    "webpack": "^5.24.3",
+    /* Webpack CLI provides command-line tools for Webpack.
+    */
+    "webpack-cli": "^4.5.0",
+    /* Webpack Dev Server enables live reloading during development.
+       Enhances developer productivity (TR-MS-016-3).
+    */
+    "webpack-dev-server": "^3.11.2",
+    /* Babel Core is the core library for Babel.
+       Used for transpiling modern JavaScript.
+    */
+    "@babel/core": "^7.13.10",
+    /* Babel Preset Env allows using the latest JavaScript features.
+    */
+    "@babel/preset-env": "^7.13.12",
+    /* Babel Preset React compiles JSX syntax used in React.
+    */
+    "@babel/preset-react": "^7.12.13",
+    /* Babel Preset TypeScript compiles TypeScript to JavaScript.
+       Supports TypeScript integration.
+    */
+    "@babel/preset-typescript": "^7.13.0",
+    /* Jest is a testing framework for JavaScript.
+       Technical Specification References:
+       - Maintainability and Support (4.16) → TR-MS-016-3: Implement automated testing.
+       Enables automated testing to support ongoing development.
+    */
+    "jest": "^26.6.3",
+    /* ts-loader integrates TypeScript with Webpack.
+       Allows Webpack to handle TypeScript files.
+    */
+    "ts-loader": "^8.0.18",
+    /* Babel Loader transpiles JavaScript files using Babel and Webpack.
+    */
+    "babel-loader": "^8.2.2",
+    /* CSS Loader interprets `@import` and `url()` like `import/require()` and resolves them.
+    */
+    "css-loader": "^5.1.3",
+    /* Style Loader injects CSS into the DOM.
+    */
+    "style-loader": "^2.0.0",
+    /* Tailwind CSS requires PostCSS for processing.
+       Addressing responsive design (TR-UA-015-5).
+    */
+    "postcss-loader": "^4.2.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
