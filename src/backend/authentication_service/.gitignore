@@ -1,0 +1,67 @@
+# .gitignore for the Authentication Service
+# Purpose: Prevent sensitive or unnecessary files from being committed to the repository.
+
+# Requirement Addressed:
+# - Name: Version Control Management
+# - Location: Technical Specification/4.6 User and System Management
+# - Description: Ensure that sensitive files and unnecessary build artifacts are not included in version control.
+
+# Ignore Python bytecode files and cache directories
+# These are compiled Python files and cache directories that are not needed in the repository.
+# Reference: Technical Specification/4.6 User and System Management
+*.pyc
+__pycache__/
+
+# Ignore log files
+# Log files may contain sensitive information and are unnecessary for version control.
+# Reference: Technical Specification/4.6 User and System Management
+*.log
+
+# Ignore environment files
+# .env files may contain sensitive environment variables like secrets and API keys.
+# Reference: Technical Specification/4.6 User and System Management
+.env
+
+# Ignore virtual environment directories
+# Virtual environments are local to the developer's machine.
+# Reference: Technical Specification/4.6 User and System Management
+venv/
+env/
+
+# Ignore IDE and editor configurations
+# User-specific settings that should not be committed.
+# Reference: Technical Specification/4.6 User and System Management
+.vscode/
+.idea/
+
+# Ignore instance directory
+# Contains local instance configurations and data.
+# Reference: Technical Specification/4.6 User and System Management
+instance/
+
+# Ignore configuration files with sensitive information
+# config.py may contain sensitive configuration details.
+# Reference: Technical Specification/4.6 User and System Management
+config.py
+
+# Ignore service modules that may contain sensitive logic
+# These files are critical and may contain sensitive code.
+# Reference: Technical Specification/4.6 User and System Management
+services.py
+controllers.py
+routes.py
+
+# Ignore application entry point
+# app.py may contain sensitive initialization parameters.
+# Reference: Technical Specification/4.6 User and System Management
+app.py
+
+# Ignore dependency definitions
+# requirements.txt lists dependencies which may include sensitive version details.
+# Reference: Technical Specification/4.6 User and System Management
+requirements.txt
+
+# Ignore Docker configuration files
+# Dockerfile may contain configurations not intended for version control.
+# Reference: Technical Specification/4.6 User and System Management
+Dockerfile
