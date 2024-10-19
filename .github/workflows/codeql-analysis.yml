@@ -1,0 +1,69 @@
+# GitHub Actions workflow configuration for automating CodeQL analysis on the codebase.
+# This workflow ensures that code quality and security vulnerabilities are detected early.
+# Requirements Addressed:
+# - Security and Compliance (Technical Specification/4.13 Security and Compliance):
+#   Ensure the platform is secure against unauthorized access, data breaches, and other security threats through robust authentication, authorization, encryption, and compliance with relevant regulations.
+
+name: CodeQL Analysis
+
+# Trigger the workflow on push or pull request to main and develop branches.
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  codeql-analysis:
+    # Job: Performs CodeQL analysis on the codebase to detect security vulnerabilities and ensure code quality.
+    runs-on: ubuntu-latest
+
+    env:
+      CODEQL_LANGUAGE: 'javascript,python'
+      # Specifies the languages to analyze, from environment variables.
+      CODEQL_DEBUG: 'true'
+      # Enables debug mode for CodeQL analysis.
+
+    steps:
+      - name: Checkout repository
+        # Step: Checkout the repository using actions/checkout@v2 to access the codebase.
+        # Dependency: External - 'actions/checkout' version 'v2' (Purpose: Checks out the repository under $GITHUB_WORKSPACE, so the workflow can access it.)
+        uses: actions/checkout@v2  # version v2
+
+      - name: Initialize CodeQL
+        # Step: Set up CodeQL using github/codeql-action/init@v1 to prepare for analysis.
+        # Dependency: External - 'github/codeql-action/init' version 'v1' (Purpose: Initializes the CodeQL tool for code analysis.)
+        uses: github/codeql-action/init@v1  # version v1
+        with:
+          languages: ${{ env.CODEQL_LANGUAGE }}
+          # Sets the languages to be analyzed.
+          debug: ${{ env.CODEQL_DEBUG }}
+          # Enables debugging mode if CODEQL_DEBUG is 'true'.
+
+      - name: Build code
+        # Step: Build the codebase to prepare it for analysis.
+        # Requirements Addressed: Ensures the codebase is properly built to enable accurate CodeQL analysis.
+        run: |
+          # Install Python dependencies for backend services.
+          # Iterates over each backend service's requirements.txt file.
+          for dir in src/backend/*/; do
+            if [ -f "$dir/requirements.txt" ]; then
+              echo "Installing Python dependencies for $dir"
+              pip install -r "$dir/requirements.txt"
+            fi
+          done
+
+          # Install Node.js dependencies for the web application.
+          echo "Installing Node.js dependencies for the web application"
+          cd src/web
+          npm install
+          npm run build
+          cd -
+
+      - name: Perform CodeQL Analysis
+        # Step: Run CodeQL analysis using github/codeql-action/analyze@v1.
+        # Dependency: External - 'github/codeql-action/analyze' version 'v1' (Purpose: Runs the CodeQL analysis on the codebase.)
+        uses: github/codeql-action/analyze@v1  # version v1
+        with:
+          debug: ${{ env.CODEQL_DEBUG }}
+          # Enables debugging mode if CODEQL_DEBUG is 'true'.
