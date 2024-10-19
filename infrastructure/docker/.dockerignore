@@ -1,0 +1,64 @@
+# Docker ignore file to optimize Docker image builds.
+# Addresses requirement:
+# Name: Containerization and Deployment Optimization
+# Location: Technical Specification/4.6 User and System Management
+# Description: Ensure efficient Docker image builds by excluding unnecessary files and directories.
+
+# Exclude Node.js dependencies directory.
+# These dependencies will be installed during the Docker build process.
+node_modules
+
+# Exclude npm debug log file to prevent unnecessary files in the image.
+npm-debug.log
+
+# Exclude build output directories for frontend and backend applications.
+dist
+build
+
+# Exclude environment configuration files containing sensitive information.
+.env
+
+# Exclude macOS specific system files.
+.DS_Store
+
+# Exclude all log files to avoid adding them to the image.
+*.log
+logs
+
+# Exclude Python cache directories and compiled bytecode files.
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+
+# Exclude pytest cache directory.
+.pytest_cache
+
+# Exclude code coverage reports and related files.
+coverage
+htmlcov
+.coverage
+
+# Exclude tox environments.
+.tox
+
+# Exclude IDE/editor configuration files and directories.
+.vscode
+.idea
+*.iml
+
+# Exclude Java build output directories.
+target
+out
+
+# Exclude temporary files and directories.
+tmp
+temp
+
+# Exclude cache directories to prevent caching artifacts from being added to the image.
+cache
+.cache
+
+# Exclude Python virtual environment directories.
+venv
+.venv
