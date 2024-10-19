@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!--
+    Requirements Addressed:
+    - Mobile Interface Design (Technical Specification/4.9 Mobile Interface Design)
+      Ensures that users can access critical platform functionalities on-the-go through a responsive and optimized mobile layout.
+
+    This Info.plist file contains essential configuration for the iOS application, including app identification, versioning, capabilities, and settings required by the iOS operating system.
+    -->
+
+    <!-- CFBundleIdentifier: Unique identifier for the app.
+    This key is essential for the app to be recognized by the iOS system and the App Store. It must be unique and is used for app updates and identification.
+    -->
+    <key>CFBundleIdentifier</key>
+    <string>com.example.app</string>
+
+    <!-- CFBundleName: Short name of the app.
+    Used by the system as the internal name of the bundle.
+    -->
+    <key>CFBundleName</key>
+    <string>ExampleApp</string>
+
+    <!-- CFBundleDisplayName: Display name of the app.
+    This is the name displayed under the app icon on the Home screen.
+    -->
+    <key>CFBundleDisplayName</key>
+    <string>Example App</string>
+
+    <!-- CFBundleVersion: Build version number of the app.
+    Represents the build number, updated with each release.
+    -->
+    <key>CFBundleVersion</key>
+    <string>1.0.0</string>
+
+    <!-- CFBundleShortVersionString: Release version number of the app.
+    Represents the user-facing version number.
+    -->
+    <key>CFBundleShortVersionString</key>
+    <string>1.0</string>
+
+    <!-- CFBundleIcons: Specifies the app's icon files.
+    This key references the 'AppIcon' asset catalog, which defines the application icon used for the iOS app as per the dependency 'AppIcon' (src/web/src/mobile/ios/Assets.xcassets/Contents.json).
+    -->
+    <key>CFBundleIcons</key>
+    <dict>
+        <key>CFBundlePrimaryIcon</key>
+        <dict>
+            <key>CFBundleIconFiles</key>
+            <array>
+                <string>AppIcon</string>
+            </array>
+            <key>UIPrerenderedIcon</key>
+            <false/>
+        </dict>
+    </dict>
+
+    <!-- UILaunchStoryboardName: Name of the storyboard file used for the app's launch screen.
+    This key specifies 'LaunchScreen', which utilizes the 'LaunchImage' asset catalog defined in the dependency 'LaunchImage' (src/web/src/mobile/ios/Assets.xcassets/Contents.json).
+    -->
+    <key>UILaunchStoryboardName</key>
+    <string>LaunchScreen</string>
+
+    <!-- UIRequiredDeviceCapabilities: Specifies the required hardware features that the app needs.
+    Ensures that the app is installed only on devices that have the specified capabilities, aligning with the requirements of supporting a responsive and optimized mobile layout as per Technical Specification/4.9 Mobile Interface Design.
+    -->
+    <key>UIRequiredDeviceCapabilities</key>
+    <array>
+        <string>armv7</string>
+    </array>
+
+    <!-- UISupportedInterfaceOrientations: The interface orientations that the app supports.
+    By supporting multiple orientations, the app provides a better user experience, ensuring responsiveness and alignment with the requirements in Technical Specification/4.9 Mobile Interface Design.
+    -->
+    <key>UISupportedInterfaceOrientations</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+        <string>UIInterfaceOrientationLandscapeLeft</string>
+        <string>UIInterfaceOrientationLandscapeRight</string>
+    </array>
+
+    <!-- UIApplicationSceneManifest: Configures scene-based life cycle support for the app.
+    Enables the app to support scene management, which is necessary for modern iOS app architectures.
+    -->
+    <key>UIApplicationSceneManifest</key>
+    <dict>
+        <!-- UIApplicationSupportsMultipleScenes: Indicates whether the app supports multiple scenes simultaneously.
+        Set to false as per configuration.
+        -->
+        <key>UIApplicationSupportsMultipleScenes</key>
+        <false/>
+        <!-- UISceneConfigurations: Defines the scene configurations used by the app.
+        -->
+        <key>UISceneConfigurations</key>
+        <dict>
+            <!-- UIWindowSceneSessionRoleApplication: Configurations for the app's main window scene.
+            -->
+            <key>UIWindowSceneSessionRoleApplication</key>
+            <array>
+                <dict>
+                    <!-- UISceneConfigurationName: Name of the scene configuration.
+                    -->
+                    <key>UISceneConfigurationName</key>
+                    <string>Default Configuration</string>
+                    <!-- UISceneDelegateClassName: Name of the class that implements the scene delegate.
+                    -->
+                    <key>UISceneDelegateClassName</key>
+                    <string>SceneDelegate</string>
+                </dict>
+            </array>
+        </dict>
+    </dict>
+</dict>
+</plist>
