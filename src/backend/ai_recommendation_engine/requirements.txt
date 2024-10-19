@@ -1,0 +1,14 @@
+# Requirements for the AI Recommendation Engine
+# Addressing requirement: AI-Powered Assistance
+# Location: Technical Specification/4.2 AI-Powered Assistance
+# Description: Implement machine learning models for generating actionable recommendations.
+
+# External Dependencies:
+
+# Flask is used for creating the web server and handling HTTP requests.
+# Version: 2.0.1
+flask==2.0.1  # Used for creating the web server and handling HTTP requests.
+
+# TensorFlow is used for loading and running the machine learning model to generate recommendations.
+# Version: 2.6.0
+tensorflow==2.6.0  # Used for loading and running the machine learning model to generate recommendations.
