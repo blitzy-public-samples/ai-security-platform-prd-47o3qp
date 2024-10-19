@@ -1,0 +1,123 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Playbook",
+  "$comment": "This schema defines the structure for the 'playbook' collection in the database, specifying the structure and constraints for playbook data. It addresses the 'Dynamic Playbook Generation' requirement (TR-DPG-004) located in the Technical Specification section 4.4 Dynamic Playbook Generation.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the playbook.",
+      "$comment": "Unique ID to ensure each playbook can be individually identified. Related to TR-DPG-004-1 requirement of standardized playbooks compatible with XSOAR."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the playbook.",
+      "$comment": "Name of the playbook for easy identification and selection."
+    },
+    "description": {
+      "type": "string",
+      "description": "A detailed description of the playbook.",
+      "$comment": "Provides context and details about the playbook's purpose and usage."
+    },
+    "steps": {
+      "type": "array",
+      "description": "An ordered list of steps or actions defined in the playbook.",
+      "$comment": "Core component defining the sequence of actions in the playbook, crucial for Dynamic Playbook Generation (TR-DPG-004).",
+      "items": {
+        "type": "object",
+        "properties": {
+          "step_number": {
+            "type": "integer",
+            "description": "The order number of the step in the playbook."
+          },
+          "action": {
+            "type": "string",
+            "description": "The action to be performed in this step."
+          },
+          "parameters": {
+            "type": "object",
+            "description": "Parameters required for this action."
+          },
+          "wait_for_completion": {
+            "type": "boolean",
+            "description": "Indicates if execution should wait for this step to complete before proceeding."
+          },
+          "on_failure": {
+            "type": "string",
+            "enum": ["continue", "stop"],
+            "description": "Defines behavior if this step fails."
+          },
+          "created_by": {
+            "$ref": "user_schema.json#/definitions/User",
+            "description": "Reference to the user who created or modified this step.",
+            "$comment": "Tracks user interaction per step, related to TR-DPG-004-5 ensuring audit logging."
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when this step was created or last modified."
+          }
+        },
+        "required": ["step_number", "action"],
+        "additionalProperties": false
+      }
+    },
+    "is_active": {
+      "type": "boolean",
+      "description": "Indicates whether the playbook is active and should be used by the system.",
+      "$comment": "Allows administrators to activate/deactivate playbooks without deleting them."
+    },
+    "version": {
+      "type": "integer",
+      "description": "Version number of the playbook for version control.",
+      "$comment": "Supports versioning of playbooks, important for audit logging and tracking changes (TR-DPG-004-5)."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the playbook was created.",
+      "$comment": "Needed for version control and audit logging as per TR-DPG-004-5."
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the playbook was last updated.",
+      "$comment": "Helps in tracking updates and modifications to the playbook, related to TR-DPG-004-5."
+    },
+    "created_by": {
+      "$ref": "user_schema.json#/definitions/User",
+      "description": "Reference to the user who created the playbook.",
+      "$comment": "Tracks the creator of the playbook, linked to user schema."
+    },
+    "modified_by": {
+      "$ref": "user_schema.json#/definitions/User",
+      "description": "Reference to the user who last modified the playbook.",
+      "$comment": "Tracks the last modifier, important for audit logging (TR-DPG-004-5)."
+    },
+    "associated_incidents": {
+      "type": "array",
+      "description": "List of incidents associated with this playbook.",
+      "$comment": "Links the playbook to incidents, allows for analysis and tracking.",
+      "items": {
+        "$ref": "incident_schema.json#/definitions/Incident"
+      }
+    },
+    "compliance_requirements": {
+      "type": "array",
+      "description": "List of compliance standards this playbook adheres to.",
+      "$comment": "Ensures playbooks are validated against organizational policies and compliance standards (TR-DPG-004-3).",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tags": {
+      "type": "array",
+      "description": "Tags associated with the playbook for categorization and search.",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": ["id", "name", "steps", "created_at", "created_by", "version"],
+  "additionalProperties": false
+}
