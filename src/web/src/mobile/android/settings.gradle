@@ -1,0 +1,16 @@
+// The settings.gradle file for the Android mobile project, responsible for defining the modules included in the build process.
+
+// Requirements Addressed:
+// - Facilitate Seamless Integration
+//   Location: Technical Specification/1.2 Scope/1.2.2 Goals
+//   Description: Ensure seamless integration with existing security tools and infrastructures such as Splunk and XSOAR.
+
+// Including the ':app' module in the build.
+// This inclusion ensures that all configurations and dependencies defined in 'app/build.gradle' are integrated.
+// It is essential for building the application consistently, which supports integration with external security tools.
+include ':app'
+
+// Setting the root project name to 'MyAndroidApp'.
+// This name uniquely identifies the project within the build environment.
+// Consistent project naming is crucial for tools like Splunk and XSOAR to integrate properly with our build artifacts.
+rootProject.name = "MyAndroidApp"
