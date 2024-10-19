@@ -1,0 +1,87 @@
+// build.gradle (Project-level)
+
+// This is the main build.gradle file for the Android mobile project.
+// It defines global build configurations, dependencies, and plugins
+// for the entire Android project.
+//
+// Requirements Addressed:
+// - Facilitate Seamless Integration (Technical Specification/1.2 Scope/1.2.2 Goals)
+//   Description: Ensure seamless integration with existing security tools and infrastructures such as Splunk and XSOAR.
+//   This configuration sets up the necessary plugins and dependencies to allow integration modules to be included in the app.
+
+// Applying the Android application plugin and Kotlin Android plugin.
+// Version specified in the classpath dependencies.
+apply plugin: 'com.android.application'      // com.android.tools.build:gradle Version 7.0.0
+apply plugin: 'kotlin-android'               // org.jetbrains.kotlin:kotlin-gradle-plugin Version 1.5.21
+
+buildscript {
+    // Repositories for resolving build script dependencies.
+    repositories {
+        google()        // Google's Maven repository for Android artifacts.
+        mavenCentral()  // Maven Central repository for additional libraries.
+    }
+    dependencies {
+        // Android Gradle Plugin for building Android apps.
+        // Addressing requirement: Ensure up-to-date build tools for integration capabilities.
+        classpath 'com.android.tools.build:gradle:7.0.0'      // Version 7.0.0
+
+        // Kotlin Gradle Plugin for Kotlin Android development.
+        // Addressing requirement: Support for Kotlin language features.
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.21' // Version 1.5.21
+    }
+}
+
+allprojects {
+    // Repositories applied to all sub-projects/modules.
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+// Android project configuration.
+// Applying global configurations to facilitate seamless integration (Technical Specification/1.2 Scope/1.2.2 Goals).
+android {
+    // Setting the SDK version used to compile the project.
+    compileSdkVersion 30
+
+    defaultConfig {
+        // Unique application ID.
+        applicationId "com.example.myandroidapp"
+        // Minimum SDK version supported.
+        minSdkVersion 21
+        // Target SDK version.
+        targetSdkVersion 30
+        // Internal version code.
+        versionCode 1
+        // User-visible version name.
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            // Disabling code shrinking and obfuscation.
+            minifyEnabled false
+            // ProGuard configuration files.
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+// Including internal dependencies/modules to define app-specific configurations.
+// Internal Dependencies:
+// - 'app' module: Defines app-specific build configurations and dependencies.
+//   Location: src/web/src/mobile/android/app/build.gradle
+include ':app'
+
+// Notes on additional internal dependencies:
+// - 'settings.gradle': Defines the modules included in the build process.
+//   Location: src/web/src/mobile/android/settings.gradle
+// - 'gradle.properties': Defines configuration properties influencing the build.
+//   Location: src/web/src/mobile/android/gradle.properties
+
+// Task to clean the build directory.
+// Ensures a fresh build environment by deleting previous build outputs.
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
