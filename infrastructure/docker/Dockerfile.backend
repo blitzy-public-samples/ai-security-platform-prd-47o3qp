@@ -1,0 +1,65 @@
+# -----------------------------------------------------------------------------------
+# Dockerfile for building and containerizing backend services.
+# This Dockerfile allows building a Docker image for any specified backend service.
+# 
+# Addresses Requirement:
+# Name: Containerization and Deployment
+# Location: Technical Specification/4.6 User and System Management
+# Description: Ensure all backend services are containerized for consistent deployment across environments.
+# -----------------------------------------------------------------------------------
+
+# Use the official Python 3.8 image as the base image.
+# This provides a consistent Python environment for all backend services.
+# External Dependency:
+# - Name: Python
+# - Module: python
+# - Version: 3.8
+# - Purpose: Base image for running Python applications.
+FROM python:3.8
+
+# Set the working directory inside the container to /app.
+# This is where the application code and resources will reside.
+# Global Variable:
+# - WORKDIR: /app
+WORKDIR /app
+
+# Define a build argument to specify which backend service to build.
+# This allows the Dockerfile to be reused for different services.
+# Default value is 'authentication_service'.
+# To build a different service, use the --build-arg flag when building the image.
+# Example: docker build --build-arg SERVICE_NAME=authorization_service -t authorization_service .
+ARG SERVICE_NAME=authentication_service
+
+# Copy the 'requirements.txt' file of the specified service into the container.
+# The 'requirements.txt' file lists all the Python dependencies needed by the service.
+COPY src/backend/${SERVICE_NAME}/requirements.txt /app/requirements.txt
+
+# Upgrade 'pip' to the latest version and install the dependencies listed in 'requirements.txt'.
+# External Dependency:
+# - Name: pip
+# - Module: pip
+# - Version: latest
+# - Purpose: Python package installer for installing dependencies.
+RUN pip install --upgrade pip && \
+    pip install -r requirements.txt
+
+# Copy the entire codebase of the specified backend service into the container.
+# This includes 'app.py' and any other modules and resources needed by the service.
+COPY src/backend/${SERVICE_NAME} /app
+
+# Set the environment variable 'PORT' to specify the port the application will listen on.
+# This allows flexibility in configuring the port if needed.
+# Default port is 5000, which is commonly used by Flask applications.
+ENV PORT=5000
+
+# Expose the port so that it can accept incoming connections.
+# This is necessary for Docker to map the container's port to the host's port.
+EXPOSE ${PORT}
+
+# Define the command to run the application using 'app.py' for the service.
+# This command will be executed when the container starts.
+# It assumes that 'app.py' is the entry point of the application.
+# The application will run on the port specified by the 'PORT' environment variable.
+# Addresses Requirement: Configure each service for deployment in a containerized environment.
+# Location: Technical Specification/4.6 User and System Management
+CMD ["python", "app.py"]
