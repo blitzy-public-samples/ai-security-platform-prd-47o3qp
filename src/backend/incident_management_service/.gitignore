@@ -1,0 +1,66 @@
+# Ignore Python bytecode files and cache directories
+# Addressing 'Maintainability and Support' (Technical Specification/4.16)
+# Exclude compiled Python files and cache directories to prevent clutter in version control
+*.pyc
+__pycache__/
+
+# Ignore log files
+# Addressing 'Maintainability and Support' (Technical Specification/4.16)
+# Exclude log files to avoid committing transient runtime data
+*.log
+
+# Ignore environment variable files containing sensitive information
+# Addressing 'Maintainability and Support' (Technical Specification/4.16)
+# Prevent sensitive data from being tracked in version control
+.env
+
+# Ignore instance-specific and system files
+# Addressing 'Maintainability and Support' (Technical Specification/4.16)
+# Exclude local instance and OS-specific files to maintain a clean repository
+instance/
+.DS_Store
+
+# Ignore virtual environment directories
+# Addressing 'Maintainability and Support' (Technical Specification/4.16)
+# Exclude local Python virtual environments to avoid committing dependencies
+venv/
+env/
+
+# Ignore test cache and coverage files
+# Addressing 'Maintainability and Support' (Technical Specification/4.16)
+# Prevent test artifacts from cluttering the repository
+.pytest_cache/
+htmlcov/
+coverage.xml
+.coverage
+
+# Ignore build artifacts and distribution packages
+# Addressing 'Maintainability and Support' (Technical Specification/4.16)
+# Exclude build outputs to keep repository size manageable
+build/
+dist/
+*.egg-info/
+
+# Ignore Docker Compose override files
+# Addressing 'Maintainability and Support' (Technical Specification/4.16)
+# Exclude local Docker overrides to prevent configuration conflicts
+docker-compose.override.yml
+
+# Ignore Node.js modules and logs
+# Addressing 'Maintainability and Support' (Technical Specification/4.16)
+# Prevent Node.js dependencies and logs from being tracked
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Ignore process IDs and temporary files
+# Addressing 'Maintainability and Support' (Technical Specification/4.16)
+# Exclude PID files and temporary directories to maintain repository cleanliness
+pids/
+tmp/
+
+# Ignore editor swap files
+# Addressing 'Maintainability and Support' (Technical Specification/4.16)
+# Prevent editor temporary files from being committed
+*.swp
+*.swo
