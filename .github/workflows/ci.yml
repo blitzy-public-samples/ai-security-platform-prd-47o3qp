@@ -1,0 +1,116 @@
+name: CI Workflow
+
+# This GitHub Actions workflow automates the build, test, and deployment processes of the platform.
+# It addresses the requirement "Continuous Integration and Deployment" (Technical Specification/4.6 User and System Management).
+# Specifically, it implements automation to ensure rapid and reliable updates as per the requirement description.
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    name: Build Services
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step: Check out the repository code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step: Set up Docker environment (Docker version 20.10)
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v2
+        # Docker (version 20.10) is used for containerization of applications.
+        # Reference: External Dependency "Docker" in JSON specification (version 20.10).
+
+      # Build the backend Docker image using 'Dockerfile.backend'
+      - name: Build Backend Docker Image
+        run: docker build -t backend:latest -f infrastructure/docker/Dockerfile.backend .
+        working-directory: ./
+        # Builds the backend services' Docker image.
+        # Uses 'Dockerfile.backend' located at 'infrastructure/docker/Dockerfile.backend'.
+        # Reference: Internal Dependency 'Dockerfile.backend' in JSON specification.
+        # Purpose: Builds the backend services' Docker images.
+
+      # Build the web application Docker image using 'Dockerfile.web'
+      - name: Build Web Docker Image
+        run: docker build -t web:latest -f infrastructure/docker/Dockerfile.web .
+        working-directory: ./
+        # Builds the web application's Docker image.
+        # Uses 'Dockerfile.web' located at 'infrastructure/docker/Dockerfile.web'.
+        # Reference: Internal Dependency 'Dockerfile.web' in JSON specification.
+        # Purpose: Builds the web application's Docker image.
+
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      # Step: Check out the repository code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step: Set up Python 3.8 environment
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.8'
+        # Python (version 3.8) is required for running tests.
+        # Reference: External Dependency 'Python' in JSON specification (version 3.8).
+
+      # Install dependencies for the authentication service
+      - name: Install Dependencies
+        run: pip install -r src/backend/authentication_service/requirements.txt
+        # Installs dependencies listed in 'requirements.txt'.
+        # Located at 'src/backend/authentication_service/requirements.txt'.
+        # Reference: Internal Dependency 'requirements.txt' in JSON specification.
+        # Purpose: Lists dependencies for the authentication service.
+
+      # Run tests for the UserModel class
+      - name: Run Unit Tests
+        run: python -m unittest src/backend/authentication_service/tests/test_models.py
+        # Runs unit tests in 'test_models.py'.
+        # Located at 'src/backend/authentication_service/tests/test_models.py'.
+        # Reference: Internal Dependency 'test_models.py' in JSON specification.
+        # Purpose: Tests the UserModel class in the authentication service.
+
+  deploy:
+    name: Deploy Infrastructure
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+      # Step: Check out the repository code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step: Set up Terraform environment (Terraform version 1.0.0)
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.0.0
+          terraform_wrapper: false
+        # Terraform (version 1.0.0) is used for infrastructure deployment.
+        # Reference: External Dependency 'Terraform' in JSON specification (version 1.0.0).
+
+      # Initialize Terraform
+      - name: Terraform Init
+        run: terraform init
+        working-directory: infrastructure/terraform
+        # Initializes Terraform in the 'infrastructure/terraform' directory.
+        # Uses 'main.tf' to orchestrate the deployment of the entire infrastructure.
+        # Reference: Internal Dependency 'main.tf' in JSON specification.
+        # Purpose: Orchestrates the deployment of the entire infrastructure.
+
+      # Apply Terraform configuration
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
+        working-directory: infrastructure/terraform
+        # Applies the Terraform configuration to deploy resources.
+        # Addresses the requirement of automating deployment processes.
+        # Requirement Addressed: 'Continuous Integration and Deployment'.
+        # Location: Technical Specification/4.6 User and System Management.
