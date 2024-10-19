@@ -1,0 +1,25 @@
+# Notification Service Dependencies
+# Addressing Requirement: Dependency Management
+# Location: Technical Specification/4.5 Notification and Alert Interface
+# Description: Ensures that all necessary libraries and dependencies are specified and managed for the notification service to operate effectively.
+
+# FastAPI provides the web framework for building the API endpoints.
+# Version: 0.68.0
+fastapi==0.68.0
+
+# SQLAlchemy provides ORM capabilities for interacting with the notification data model.
+# Version: 1.4.22
+sqlalchemy==1.4.22
+
+# Pydantic is used for data validation and settings management.
+# Version: 1.8.2
+pydantic==1.8.2
+
+# pytest provides a framework for writing and running test cases.
+# Version: 6.2.4
+pytest==6.2.4
+
+# TestClient is used for testing FastAPI applications.
+# Module: fastapi.testclient
+# Version: 0.68.0
+fastapi.testclient==0.68.0
