@@ -1,0 +1,22 @@
+# Requirements for Incident Management Service
+# This file lists the external libraries and their versions required for the Incident Management Service to function correctly.
+# It addresses the requirement "Incident Response Automation" as per Technical Specification/4.1 Incident Response Automation.
+# Each dependency includes a comment about its purpose and relevant technical specification reference.
+
+# Flask web framework (Technical Specification/4.1 Incident Response Automation)
+Flask==1.1.2  # Provides the web framework for handling HTTP requests and routing.
+
+# PyMongo for MongoDB interactions (Technical Specification/4.1 Incident Response Automation)
+pymongo==3.6.3  # Provides the MongoDB client for connecting to the database and executing operations.
+
+# Requests library for HTTP requests (Technical Specification/4.1 Incident Response Automation)
+requests==2.25.1  # Allows sending HTTP requests to test the API endpoints.
+
+# Pytest for testing (Technical Specification/4.1 Incident Response Automation)
+pytest==6.2.4  # Framework for writing and running test cases.
+
+# TensorFlow for AI-driven incident analysis (Technical Specification/4.1 Incident Response Automation, TR-IR-001-3)
+tensorflow==2.4.1  # Used for implementing AI algorithms for real-time incident analysis.
+
+# Scikit-learn for machine learning (Technical Specification/4.1 Incident Response Automation, TR-IR-001-3)
+scikit-learn==0.24.1  # Provides machine learning tools for AI-driven workflows.
