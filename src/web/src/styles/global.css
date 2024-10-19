@@ -1,0 +1,64 @@
+/* Global CSS variables */
+/* Addressing Requirement: Ensure a consistent and responsive design across the web application by applying global styles. (Technical Specification/4.1 Dashboard) */
+:root {
+    /* Typography */
+    --body-font-family: 'Roboto', sans-serif;
+
+    /* Color Palette */
+    --primary-color: #3498db;       /* Used for primary components like header and footer */
+    --secondary-color: #2ecc71;     /* Used for secondary components like sidebar */
+    --background-color: #ecf0f1;    /* Background color for body and widgets */
+    --text-color: #2c3e50;          /* Standard text color across the application */
+
+    /* Layout Dimensions */
+    --header-height: 60px;          /* Standard height for the header */
+    --footer-height: 50px;          /* Standard height for the footer */
+    --sidebar-width: 250px;         /* Width for the sidebar */
+    --dashboard-widget-height: 200px; /* Default height for dashboard widgets */
+}
+
+/* Global styles for body element */
+/* Addressing Requirement: Apply consistent typography and layout across the web application. (Technical Specification/4.1 Dashboard) */
+body {
+    font-family: var(--body-font-family);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Ensure consistent box sizing across the application */
+}
+
+/* Styles for header component */
+/* Addressing Requirement: Standardize the appearance of the header for consistent user interface. (Technical Specification/4.1 Dashboard) */
+header {
+    height: var(--header-height);
+    background-color: var(--primary-color);
+    color: var(--text-color);
+}
+
+/* Styles for footer component */
+/* Addressing Requirement: Standardize the appearance of the footer for consistent user interface. (Technical Specification/4.1 Dashboard) */
+footer {
+    height: var(--footer-height);
+    background-color: var(--primary-color);
+    color: var(--text-color);
+}
+
+/* Styles for sidebar component */
+/* Addressing Requirement: Standardize the appearance of the sidebar for consistent navigation elements. (Technical Specification/4.1 Dashboard) */
+.sidebar {
+    width: var(--sidebar-width);
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+}
+
+/* Styles for dashboard widgets */
+/* Addressing Requirement: Ensure consistent styling for dashboard widgets. (Technical Specification/4.1 Dashboard) */
+.widget {
+    height: var(--dashboard-widget-height);
+    background-color: var(--background-color);
+    border: 1px solid #bdc3c7; /* Light grey border for visual separation */
+    border-radius: 4px;        /* Rounded corners for a modern look */
+    padding: 10px;
+    margin: 10px;
+}
