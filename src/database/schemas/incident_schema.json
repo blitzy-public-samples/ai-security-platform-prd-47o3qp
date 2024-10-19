@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "User Account Schema",
+  "description": "Schema for user account data, addressing requirements TR-USM-006 and TR-SC-013.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the user account. (Requirement TR-USM-006-2)"
+    },
+    "username": {
+      "type": "string",
+      "description": "The username of the user, used for login and identification. (Requirement TR-USM-006-2)"
+    },
+    "password": {
+      "type": "string",
+      "description": "Hashed password for user authentication. (Requirements TR-USM-006-2, TR-USM-006-4, TR-SC-013-3)"
+    },
+    "role": {
+      "type": "string",
+      "description": "Role assigned to the user, determining access permissions. (Requirement TR-USM-006-1)"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the user account was created. (Requirements TR-USM-006-5, TR-LM-020-1)"
+    }
+  },
+  "required": ["id", "username", "password", "role", "created_at"],
+  "additionalProperties": false
+}
