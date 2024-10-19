@@ -1,0 +1,32 @@
+# Authentication Service Python Dependencies
+# Lists the Python dependencies required for the authentication service, ensuring all necessary libraries are installed for the service to function correctly.
+# Requirement Addressed: Dependency Management
+# Location: Technical Specification/4.6 User and System Management
+
+# Dependency: Flask
+# Purpose: Provides the web framework for handling HTTP requests and responses.
+# Version: 2.0.1
+# Requirement Addressed: Web Framework Integration
+# Location: Technical Specification/1.3 System Architecture
+Flask==2.0.1
+
+# Dependency: PyJWT
+# Purpose: Handles JWT token encoding and decoding for secure session management.
+# Version: 2.1.0
+# Requirement Addressed: Stateless Authentication Implementation
+# Location: Technical Specification/Security Considerations/Authentication
+PyJWT==2.1.0
+
+# Dependency: Authlib
+# Purpose: Provides OAuth 2.0 support for secure authorization.
+# Version: 1.0.0
+# Requirement Addressed: Secure API Authentication Mechanism
+# Location: Technical Specification/TR-API-021-4
+Authlib==1.0.0
+
+# Dependency: pymongo
+# Purpose: Provides the MongoDB client for connecting to the database and executing operations.
+# Version: 3.11.4
+# Requirement Addressed: Data Management and Storage
+# Location: Technical Specification/4.11 Data Management
+pymongo==3.11.4
