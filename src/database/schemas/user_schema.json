@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/schemas/user.schema.json",
+  "title": "User Schema",
+  "description": "Defines the schema for the user collection in the database, specifying the structure and constraints for user data.",
+  "$comment": "This schema addresses the requirements for User Data Management located in Technical Specification/4.6 User and System Management. It ensures that user roles, permissions, and user account management are handled according to the specifications to maintain operational security and efficiency within the platform.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the user.",
+      "$comment": "This 'id' field uniquely identifies each user in the system, fulfilling the need for distinct user tracking as per TR-USM-006 (Technical Specification/4.6 User and System Management).",
+      "examples": ["123e4567-e89b-12d3-a456-426614174000"]
+    },
+    "username": {
+      "type": "string",
+      "description": "The username of the user, used for login and identification.",
+      "$comment": "The 'username' field is essential for user authentication and identification, adhering to TR-USM-006-2 which requires interfaces for creating and modifying user accounts (Technical Specification/4.6.4).",
+      "pattern": "^[a-zA-Z0-9_]{3,30}$",
+      "examples": ["john_doe"]
+    },
+    "password": {
+      "type": "string",
+      "description": "Hashed password for user authentication.",
+      "$comment": "The 'password' field stores the user's hashed password, critical for secure authentication mechanisms. Complies with TR-SC-013-1 enforcing multi-factor authentication and secure password storage (Technical Specification/4.13.4).",
+      "minLength": 60,
+      "maxLength": 60,
+      "examples": ["$2b$12$ePjVx3voVqU2R5gx5DA0wuCRtGfEgNhkLJndizUK9zx9M.0gKxZx2"]
+    },
+    "role": {
+      "type": "string",
+      "description": "Role assigned to the user, determining access permissions.",
+      "$comment": "The 'role' field assigns Role-Based Access Control (RBAC) roles to users, as specified in TR-USM-006-1 (Technical Specification/4.6.4). Ensures that user permissions are managed according to platform security policies.",
+      "enum": ["Administrator", "Security Analyst", "IT Manager", "Guest User"],
+      "examples": ["Security Analyst"]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the user account was created.",
+      "$comment": "The 'created_at' timestamp aids in auditing user creation, fulfilling TR-CM-005-1 which requires automatic logging of incident details including user actions (Technical Specification/4.5.4).",
+      "examples": ["2021-10-20T14:48:00.000Z"]
+    }
+  },
+  "required": ["id", "username", "password", "role", "created_at"],
+  "additionalProperties": false
+}
