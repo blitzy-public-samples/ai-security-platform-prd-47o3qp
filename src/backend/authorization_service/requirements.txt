@@ -1,0 +1,19 @@
+# requirements.txt for the Authorization Service
+# This file specifies the Python packages required for the authorization service.
+# It addresses the following requirement:
+# 'Role-Based Access Control (RBAC)' - Technical Requirements/4.6 User and System Management
+# Description: Implement Role-Based Access Control (RBAC) for user permissions.
+
+# External Dependencies:
+
+# Flask==2.0.1
+# Version 2.0.1 - Provides the web framework for handling HTTP requests and responses.
+flask==2.0.1
+
+# SQLAlchemy==1.4.22
+# Version 1.4.22 - Provides ORM capabilities for defining and interacting with the database models.
+sqlalchemy==1.4.22
+
+# pytest==6.2.4
+# Version 6.2.4 - Facilitates the execution of unit tests and assertions.
+pytest==6.2.4
