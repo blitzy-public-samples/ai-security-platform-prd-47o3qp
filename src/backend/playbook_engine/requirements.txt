@@ -1,0 +1,15 @@
+# Requirements for Playbook Engine module
+# This module is responsible for managing and executing security playbooks using AI-driven strategies.
+# Addresses: Dynamic Playbook Generation
+# Location: Technical Specification/4.4 Dynamic Playbook Generation
+
+# Flask provides the web framework for defining API routes.
+# Version: 2.0.1
+Flask==2.0.1
+
+# pytest is used for writing and running test cases.
+# Version: 6.2.4
+pytest==6.2.4
+
+# Note: 'unittest' and 'datetime' are built-in modules in Python's standard library.
+# They do not require installation and are available by default.
