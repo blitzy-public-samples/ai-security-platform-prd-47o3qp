@@ -1,0 +1,73 @@
+{
+  // TypeScript Configuration
+  // Configures TypeScript compiler options and module resolution paths for the project.
+  // Requirement Addressed: TypeScript Configuration
+  // Location: Technical Specification/4.1 Dashboard
+  // TypeScript Version: 4.3.5
+
+  // Dependencies:
+  // Internal:
+  // - webpack.config.js (src/web/webpack.config.js): Integrates TypeScript with Webpack for module bundling and compilation.
+  // - babel-loader (src/web/.babelrc): Transpiles TypeScript code using Babel for compatibility with older environments.
+  // External:
+  // - TypeScript (version 4.3.5): Provides static type checking and compilation for TypeScript code.
+
+  // Note: This tsconfig.json works in conjunction with webpack.config.js and .babelrc to integrate TypeScript with Webpack and Babel.
+
+  "compilerOptions": {
+    // Set the target to ES5 for compatibility with older browsers.
+    // This ensures that the compiled JavaScript is compatible with environments that support ECMAScript 5.
+    "target": "ES5",
+
+    // Use ESNext for module resolution to support dynamic imports.
+    // Allows the use of the latest module features, including dynamic import().
+    "module": "ESNext",
+
+    // Enable JSX support for React components.
+    // Allows writing JSX syntax in .tsx files.
+    "jsx": "react",
+
+    // Apply strict type-checking options to catch potential errors.
+    // Enables all strict type-checking options.
+    "strict": true,
+
+    // Enable esModuleInterop for compatibility with CommonJS modules.
+    // Helps with importing CommonJS modules seamlessly.
+    "esModuleInterop": true,
+
+    // Skip library checks to speed up the compilation process.
+    // Skips type checking of all declaration files (*.d.ts).
+    "skipLibCheck": true,
+
+    // Force consistent casing in file names to prevent case-sensitive issues.
+    // Ensures that file casing matches between file names and imports.
+    "forceConsistentCasingInFileNames": true,
+
+    // Define baseUrl for module resolution to simplify imports.
+    // Base directory to resolve non-relative module names.
+    "baseUrl": "./src",
+
+    // Define paths for module resolution to simplify imports.
+    // Aliases for module paths to simplify import statements.
+    "paths": {
+      // Alias '@components/*' to 'src/web/src/components/*'.
+      "@components/*": ["src/web/src/components/*"],
+
+      // Alias '@utils/*' to 'src/web/src/utils/*'.
+      "@utils/*": ["src/web/src/utils/*"],
+
+      // Alias '@store/*' to 'src/web/src/store/*'.
+      "@store/*": ["src/web/src/store/*"],
+
+      // Alias '@pages/*' to 'src/web/src/pages/*'.
+      "@pages/*": ["src/web/src/pages/*"]
+    }
+  },
+  // Include all TypeScript files in the src directory for compilation.
+  // This includes all files under 'src/web/src/' recursively.
+  "include": ["src/web/src/**/*"],
+
+  // Exclude node_modules, build, and dist directories from the compilation process.
+  // Prevents compiling dependencies and build outputs.
+  "exclude": ["node_modules", "build", "dist"]
+}
