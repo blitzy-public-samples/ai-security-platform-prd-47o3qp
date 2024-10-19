@@ -1,0 +1,75 @@
+# Docker Compose configuration for multi-container application
+# Defines services, networks, and volumes for the platform
+# Requirements Addressed:
+# - Ensure all services are containerized and orchestrated using Docker Compose for consistent deployment.
+#   Location: Technical Specification/4.6 User and System Management
+
+version: '3.9'  # Docker Compose file format version, compatible with Docker Compose version 1.29
+
+services:
+  backend:
+    # Builds the backend services' Docker images.
+    # Dependency: infrastructure/docker/Dockerfile.backend
+    build:
+      context: .
+      dockerfile: infrastructure/docker/Dockerfile.backend
+    ports:
+      - '5000:5000'  # Maps host port 5000 to container port 5000
+    depends_on:
+      - database
+      - mongodb
+    networks:
+      - app-network
+
+  web:
+    # Builds the web application's Docker image.
+    # Dependency: infrastructure/docker/Dockerfile.web
+    build:
+      context: .
+      dockerfile: infrastructure/docker/Dockerfile.web
+    ports:
+      - '3000:3000'  # Maps host port 3000 to container port 3000
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+  database:
+    # PostgreSQL database service configuration
+    # Utilizes a relational database for structured data storage.
+    # Requirements Addressed:
+    # - TR-DM-011-1: Utilize a relational database (e.g., PostgreSQL) for structured data storage.
+    #   Location: Technical Specification/4.11 Data Management
+    image: 'postgres:13'  # Postgres version 13 (third-party import)
+    environment:
+      POSTGRES_USER: 'yourusername'
+      POSTGRES_PASSWORD: 'yourpassword'
+      POSTGRES_DB: 'yourdbname'
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  mongodb:
+    # MongoDB service configuration
+    # Employs a NoSQL database for unstructured data storage.
+    # Requirements Addressed:
+    # - TR-DM-011-2: Employ a NoSQL database (e.g., MongoDB) for unstructured data storage.
+    #   Location: Technical Specification/4.11 Data Management
+    image: 'mongo:4.4'  # MongoDB version 4.4 (third-party import)
+    ports:
+      - '27017:27017'  # Maps host port 27017 to container port 27017
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge  # Uses the bridge driver for container networking
+
+volumes:
+  db-data:
+    driver: local  # Stores PostgreSQL data persistently on the host
+  mongo-data:
+    driver: local  # Stores MongoDB data persistently on the host
